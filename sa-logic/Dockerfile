@@ -1,8 +1,14 @@
-FROM python:3.6.6-alpine
+FROM python:slim
+
 COPY sa /app
 WORKDIR /app
-RUN pip3 install -r requirements.txt && \
-    python3 -m textblob.download_corpora
+
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+RUN python -m textblob.download_corpora
+
 EXPOSE 5000
-ENTRYPOINT ["python3"]
+
+ENTRYPOINT ["python"]
+
 CMD ["sentiment_analysis.py"]

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sa-webapp-lb
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: webapp.sa-cluster.1uka.me
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: sa-webapp
