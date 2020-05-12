@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sa-frontend
+  name: sa-webapp
   labels:
-    app: sa-frontend
+    app: sa-webapp
 spec:
   selector:
     matchLabels:
-      app: sa-frontend
+      app: sa-webapp
   replicas: 2
   minReadySeconds: 15
   strategy:
@@ -18,11 +18,15 @@ spec:
   template:
     metadata:
       labels:
-        app: sa-frontend
+        app: sa-webapp
+        tier: backend
     spec:
       containers:
-        - image: 1uka/sa-frontend
+        - image: 1uka/sa-webapp
           imagePullPolicy: Always
-          name: sa-frontend
+          name: sa-webapp
+          env:
+            - name: SA_LOGIC_API_URL
+              value: "http://sa-logic"
           ports:
-            - containerPort: 80
+            - containerPort: 8080
