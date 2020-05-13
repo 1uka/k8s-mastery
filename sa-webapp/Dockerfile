@@ -17,6 +17,9 @@ COPY --from=build /app/target/sentiment-analysis-web-0.0.1-SNAPSHOT.jar /app/sen
 
 # Environment Variable that defines the endpoint of sentiment-analysis python api.
 ENV SA_LOGIC_API_URL http://sa-logic
+ENV MYSQL_DATABASE sa_webapp
+ENV MYSQL_USER sa_user
+ENV MYSQL_PASSWORD sa_password
 
 EXPOSE 8080
 

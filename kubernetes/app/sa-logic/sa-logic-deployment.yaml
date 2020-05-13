@@ -25,5 +25,9 @@ spec:
         - image: 1uka/sa-logic:v2
           imagePullPolicy: Always
           name: sa-logic
+          resources:
+            limits:
+              memory: "64Mi"
+              cpu: "250m"
           ports:
             - containerPort: 5000
